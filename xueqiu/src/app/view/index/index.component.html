@@ -1,0 +1,32 @@
+<div class="main">
+    <div class="mainLeft">
+        <div class="zhishu">
+            <div class="zhishuList" [ngStyle]="zhishuListPosition">
+                <div class="zhishuItem" *ngFor="let item of quoteList" [ngClass]="{'negative': item.quote.percent<0}">
+                    <div class="zhishuItemLeft">
+                        <h3>{{item.quote.name}}</h3>
+                        <div>{{item.quote.current}}</div>
+                        <p>{{item.quote.chg}}({{item.quote.percent}})</p>
+                    </div>
+                    <div class="svg">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="width: 140px; height: 56px;"><path class="StockSlider_last-close_3k-" d="M0 35 L140 35"></path><path class="StockSlider_polyline_YMO" d="M0 45 L0 40 L1 40 L1 43 L2 37 L2 34 L3 28 L4 30 L4 30 L5 30 L5 36 L6 33 L6 34 L7 33 L8 33 L8 37 L9 33 L9 34 L10 32 L10 29 L11 31 L12 29 L12 24 L13 25 L13 25 L14 26 L15 24 L15 22 L16 22 L16 21 L17 18 L17 20 L18 21 L19 23 L19 24 L20 21 L20 23 L21 25 L21 22 L22 22 L23 23 L23 24 L24 23 L24 25 L25 27 L26 25 L26 25 L27 26 L27 27 L28 28 L28 30 L29 30 L30 29 L30 30 L31 29 L31 28 L32 27 L32 27 L33 27 L34 26 L34 25 L35 23 L35 25 L36 25 L37 26 L37 27 L38 28 L38 28 L39 27 L39 26 L40 24 L41 23 L41 21 L42 15 L42 15 L43 13 L43 14 L44 15 L45 12 L45 10 L46 12 L46 9 L47 8 L48 7 L48 8 L49 10 L49 7 L50 6 L50 6 L51 5 L52 9 L52 10 L53 10 L53 11 L54 10 L54 10 L55 10 L56 10 L56 11 L57 12 L57 10 L58 10 L59 10 L59 8 L60 9 L60 7 L61 8 L61 9 L62 8 L63 11 L63 12 L64 13 L64 14 L65 24 L65 23 L66 22 L67 21 L67 24 L68 24 L68 23 L69 24 L70 26 L70 20 L71 22 L71 21 L72 21 L72 20 L73 23 L74 23 L74 23 L75 24 L75 26 L76 26 L76 27 L77 25 L78 26 L78 25 L79 24 L79 25 L80 24 L80 23 L81 21 L82 22 L82 22 L83 22 L83 25 L84 25 L85 26 L85 25 L86 26 L86 27 L87 30 L87 30 L88 30 L89 30 L89 31 L90 32 L90 31 L91 30 L91 30 L92 34 L93 38 L93 38 L94 38 L94 38 L95 37 L96 37 L96 37 L97 39 L97 39 L98 40 L98 43 L99 45 L100 44 L100 44 L101 44 L101 44 L102 44 L102 46 L103 45 L104 45 L104 45 L105 45 L105 44 L106 42 L107 41 L107 43 L108 47 L108 49 L109 50 L109 53 L110 52 L111 53 L111 52 L112 54 L112 54 L113 53 L113 51 L114 52 L115 53 L115 54 L116 55 L116 55 L117 53 L118 52 L118 52 L119 51 L119 49 L120 47 L120 49 L121 49 L122 53 L122 53 L123 53 L123 53 L124 52 L124 52 L125 51 L126 50 L126 51 L127 50 L127 49 L128 51 L129 53 L129 54 L130 55 L130 55 L131 55 L131 56 L132 57 L133 59 L133 59 L134 57 L134 58 L135 57 L135 56 L136 56 L137 56 L137 56 L138 56 L138 56 L139 55"></path>0</svg>
+                    </div>
+                </div>
+            </div>
+            <div class="circleList"> 
+                <div class="circle" (click)="toggleZhishu(0)"></div>
+                <div class="circle" (click)="toggleZhishu(1)"></div>
+                <div class="circle" (click)="toggleZhishu(2)"></div>
+            </div>
+        </div>
+    </div>
+    <div class="mainRight">
+        <div class="newsTab">
+            <div class="tabBn" [ngClass]="{active: tabIndex==0}" (click)="tabEvent(0)">推荐</div>
+            <div class="tabBn" [ngClass]="{active: tabIndex==1}" (click)="tabEvent(1)">7x24</div>
+            <div class="tabBn" [ngClass]="{active: tabIndex==2}" (click)="tabEvent(2)">沪深</div>
+            <div class="tabBn" [ngClass]="{active: tabIndex==3}" (click)="tabEvent(3)">科创板</div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

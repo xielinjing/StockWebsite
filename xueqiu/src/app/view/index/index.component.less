@@ -1,0 +1,80 @@
+.main{
+    width: 960px;
+    margin: 0 auto;
+}
+.zhishuItem{
+    display: flex;
+    align-items: center;
+    // flex: 1;  //每一项各占一份
+    width: 213.33px;
+    
+    .zhishuItemLeft h3{
+        font-size: 14px;
+        font-weight: 600;
+        margin: 5px 0;
+
+    }
+    .zhishuItemLeft>div{
+        font-size: 18px;
+        font-weight: 900;
+        color: orangered;
+    }
+    .zhishuItemLeft>p{
+        font-size: 12px;
+        font-weight: 600;
+        color: orangered;
+        margin: 0;
+    }
+    .svg svg{
+        width: 70 px;
+        height: 28 px;
+    }
+}
+.zhishuItem.negative{
+    .zhishuItemLeft>div, .zhishuItemLeft>p{
+        color: #093!important;
+    }
+}
+
+.zhishu{
+    width: 640px;
+    height: 100 px;
+    overflow: hidden; //把溢出的内容隐藏
+    .circleList{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .circle{
+            width: 6 px;
+            height: 6 px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            margin: 0 4px;
+        }
+    }
+}
+
+.zhishuList{
+    width: 1920px;
+    display: flex;
+}
+
+.newsTab{
+    display: flex;
+    width: 640px;
+    border-bottom: 1px solid #efefef;
+
+    .tabBn{
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        margin: 0 10px;
+    }
+
+    .tabBn.active{
+        font-weight: 900;
+        color: #06c;
+        border-bottom: 2px solid #06c;
+    }
+}

@@ -1,0 +1,59 @@
+.header{
+    min-width: 960px;
+    
+    height: 58px;
+    background-color: #1369bf;
+    color: #ffffff;
+    .nav{
+        margin: 0 auto; //set center
+        width: 960px;
+        display: flex;
+        height: 58px;
+        justify-content: space-between;
+        align-items: center;
+        .navList{
+            font-size: 18px;
+            display: flex;
+            .navItem{
+                width: 100px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+            }
+            .navItem:focus{
+                outline: none;
+            }
+            .navItem.router-link-active{
+                border-bottom: 2px solid #ffffff;
+            }
+        }
+        .logo img{
+            height: 25px;
+            width: auto;
+        }
+        .search{
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 15px;
+            padding: 0 20px;
+            background-color: #ffffff;
+            border: none;
+            outline: none;
+            display: flex;
+            input{
+                border: none;
+                outline: none;
+                width: 270px;
+            }
+            .searchIcon{
+                width: 30px;
+                height: 30px;
+                background-image: url(../assets/img/search.png);
+                background-size: 80% 80%;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}

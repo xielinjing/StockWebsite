@@ -5,6 +5,13 @@ let axios = require('axios');
 //instance express
 let app = express();
 
+//middle ware
+app.use((req,res,next)=>{
+    res.append('Access-Control-Allow-Origin',"*")
+    res.append('Access-Control-Allow-Content-Type',"*")
+    next()  //中间件的下一步
+})
+
 //request headers
 let options = {
     headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
@@ -18,7 +25,7 @@ let options = {
     'Accept-Language': 'en-US,en;q=0.9',
     'Connection': 'keep-alive',
     //must have cookie, otherwise error 400
-    'Cookie': 'xq_a_token=2ee68b782d6ac072e2a24d81406dd950aacaebe3; xqat=2ee68b782d6ac072e2a24d81406dd950aacaebe3; xq_r_token=f9a2c4e43ce1340d624c8b28e3634941c48f1052; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOi0xLCJpc3MiOiJ1YyIsImV4cCI6MTU4NzUyMjY2MSwiY3RtIjoxNTg1NTE5MDk5OTg2LCJjaWQiOiJkOWQwbjRBWnVwIn0.bZv0zax2RUSConMKvor6jm7v4GLSq_GhOrCh8dZFsdSjtra5TsTxFTthCy7yHoBZF8_daq6CBs30GiU-KHJE72SHsS-S9xmW_XEbmPMqjCVUDO04R11PkIuVQW3O9iLEGQEc9a6H4OP6hUOQUSlvatUF4hvK2tmpsiyOo-XjD2kdpAv08_1GwtWWQdqc9FxYcJMCaZqzVEF2JbBvxJkzSOh5x6qXzbRQYi_sZo0XPqSr8Hx-BuBV6I0vF4vjCh8Qgv_kKW4-rgDFWt6Br7PIDKeFM05PqOVrAT5Khfd7z50fOdc2cufwVu6DPeEPwlCumkrXEruPJDeC6scjIG5YrQ; u=551585519146390; device_id=24700f9f1986800ab4fcc880530dd0ed; Hm_lvt_1db88642e346389874251b5a1eded6e3=1585519149; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1585519149'},
+    'Cookie': 'device_id=24700f9f1986800ab4fcc880530dd0ed; xq_a_token=328f8bbf7903261db206d83de7b85c58e4486dda; xqat=328f8bbf7903261db206d83de7b85c58e4486dda; xq_r_token=22ab4927b9acb2a02a4efefe14ccbbc589e007cb; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOi0xLCJpc3MiOiJ1YyIsImV4cCI6MTU5MTg0Mjc0NiwiY3RtIjoxNTkwNzcyMjUzMjUxLCJjaWQiOiJkOWQwbjRBWnVwIn0.jLh94zg3k1OD06NaINjIsIyo4nYcamNBUMt70MUGJ-KUMWH6lup81M_wqTFKkNDGRuzaaeTMbSa5XMZCC69U26JW3xFtMY9Ij7SP-DZAv8NyEO5mKLgYsM4BzROBs0-pV9pGYAHGMd1kG-tM5S0oHD3eOsum34BQW8lWs7WDu3v-IISbmVwWjLchaJEno_oB2LVgh08sYpAL4W8H6N55FNZ7yN_3ih2yOyijP80B2PsL4-vTCTXTOBJioeUTQ9IEHpaKgtTQEL-vHU528Wn-dkULb--eWhzAr2n7fU_RdclVEb_GLsZ5UCoPwqddHmy8pOIchCb2Ty4X93LwBWv8Kg; u=821590772296247; Hm_lvt_1db88642e346389874251b5a1eded6e3=1588260673,1589559024,1590772301; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1590772301'},
 }
 let options2 = {
     headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
@@ -31,7 +38,7 @@ let options2 = {
     'Accept-Language': 'en-US,en;q=0.9',
     'Connection': 'keep-alive',
     //must have cookie, otherwise error 400
-    'Cookie': 'xq_a_token=2ee68b782d6ac072e2a24d81406dd950aacaebe3; xqat=2ee68b782d6ac072e2a24d81406dd950aacaebe3; xq_r_token=f9a2c4e43ce1340d624c8b28e3634941c48f1052; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOi0xLCJpc3MiOiJ1YyIsImV4cCI6MTU4NzUyMjY2MSwiY3RtIjoxNTg1NTE5MDk5OTg2LCJjaWQiOiJkOWQwbjRBWnVwIn0.bZv0zax2RUSConMKvor6jm7v4GLSq_GhOrCh8dZFsdSjtra5TsTxFTthCy7yHoBZF8_daq6CBs30GiU-KHJE72SHsS-S9xmW_XEbmPMqjCVUDO04R11PkIuVQW3O9iLEGQEc9a6H4OP6hUOQUSlvatUF4hvK2tmpsiyOo-XjD2kdpAv08_1GwtWWQdqc9FxYcJMCaZqzVEF2JbBvxJkzSOh5x6qXzbRQYi_sZo0XPqSr8Hx-BuBV6I0vF4vjCh8Qgv_kKW4-rgDFWt6Br7PIDKeFM05PqOVrAT5Khfd7z50fOdc2cufwVu6DPeEPwlCumkrXEruPJDeC6scjIG5YrQ; u=551585519146390; device_id=24700f9f1986800ab4fcc880530dd0ed; Hm_lvt_1db88642e346389874251b5a1eded6e3=1585519149; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1585519149'},
+    'Cookie': 'device_id=24700f9f1986800ab4fcc880530dd0ed; xq_a_token=328f8bbf7903261db206d83de7b85c58e4486dda; xqat=328f8bbf7903261db206d83de7b85c58e4486dda; xq_r_token=22ab4927b9acb2a02a4efefe14ccbbc589e007cb; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOi0xLCJpc3MiOiJ1YyIsImV4cCI6MTU5MTg0Mjc0NiwiY3RtIjoxNTkwNzcyMjUzMjUxLCJjaWQiOiJkOWQwbjRBWnVwIn0.jLh94zg3k1OD06NaINjIsIyo4nYcamNBUMt70MUGJ-KUMWH6lup81M_wqTFKkNDGRuzaaeTMbSa5XMZCC69U26JW3xFtMY9Ij7SP-DZAv8NyEO5mKLgYsM4BzROBs0-pV9pGYAHGMd1kG-tM5S0oHD3eOsum34BQW8lWs7WDu3v-IISbmVwWjLchaJEno_oB2LVgh08sYpAL4W8H6N55FNZ7yN_3ih2yOyijP80B2PsL4-vTCTXTOBJioeUTQ9IEHpaKgtTQEL-vHU528Wn-dkULb--eWhzAr2n7fU_RdclVEb_GLsZ5UCoPwqddHmy8pOIchCb2Ty4X93LwBWv8Kg; u=821590772296247; Hm_lvt_1db88642e346389874251b5a1eded6e3=1588260673,1589559024,1590772301; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1590772301'},
     //new information
     'elastic-apm-traceparent': '00-8d27931c3ebab25140ef1890c017c3a0-5db8435d5173b54e-01',
 }
