@@ -9,6 +9,7 @@ import { NewstockComponent } from './view/newstock/newstock.component';
 import { RecommendComponent } from './component/recommend/recommend.component';
 import { DayinfoComponent } from './component/dayinfo/dayinfo.component';
 import { TimePipe } from './pipe/time.pipe';
+import { CstockComponent } from './view/cstock/cstock.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TimePipe } from './pipe/time.pipe';
     NewstockComponent,
     RecommendComponent,
     DayinfoComponent,
-    TimePipe
+    TimePipe,
+    CstockComponent
   ],
   imports: [
     BrowserModule,

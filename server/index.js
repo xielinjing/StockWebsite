@@ -73,6 +73,47 @@ app.get('/api/index/news', async (req, res)=>{
     res.json(result.data);
 })
 
+//股票筛选的数据
+app.get('/api/choose/tools', async(req,res)=>{
+    //获取首页
+    let httpUrl = 'https://xueqiu.com/hq/screener';
+    let result = await axios.get(httpUrl);
+    //res.send(result.data);
+    //设置正则
+    let reg = /SNB.data.condition = (.*?);/igs
+    //匹配内容
+    let content = reg.exec(result.data)[1];
+    res.send(content);
+})
+
+//获取股票
+//关注人数 follow7d（本周新增关注人数） follow
+//讨论条数 tweet7d 
+//分享交易 deal7d
+app.get('/api/choose/stocks', async(req, res)=>{
+    let order_by = req.query.order_by?req.query.order_by:'follow7d';
+    let page = req.query.page ? req.query.page:1;
+    let time = new Date().getTime();
+    let order = req.query.order ? req.query.order:'desc';
+    let httpUrl = `https://xueqiu.com/service/screener/screen?category=CN&size=10&order=desc&order_by=${order_by}&only_count=0&page=${page}&_=${time}`;
+    let result = await axios.get(httpUrl);
+    res.json(result.data);
+})
+
+app.get('/api/choose/industries', async(req,res)=>{
+    let time = new Date().getTime();
+    let httpUrl = `https://xueqiu.com/service/screener/industries?category=CN&_=${time}`;
+    let result = await axios.get(httpUrl);
+    res.json(result.data);
+})
+
+app.get('/api/choose/areas', async(req,res)=>{
+    let time = new Date().getTime();
+    let httpUrl = `https://xueqiu.com/service/screener/areas?_=${time}`;
+    let result = await axios.get(httpUrl);
+    res.json(result.data);
+})
+
 //listen to the port
 app.listen(8080, ()=>{
     console.log('server start:', 'http://localhost:8080')

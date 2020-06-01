@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsService } from '../../service/news.service';
 
 @Component({
   selector: 'app-choose',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChooseComponent implements OnInit {
 
-  constructor() { }
+  industriesList = [];
+  areaList = [];
+  areas = {};
 
-  ngOnInit() {
+  constructor(public newSer:NewsService) { }
+
+  async ngOnInit() {
+    let resutlt = await this.newSer.getIndustries();
+    this.industriesList = resutlt.data.industries;
+
+    let resultArea = await this.newSer.getAreas();
+    
+    this.areas = resultArea.data.areas;
+    //console.log(this.areas);
+    this.areaList = Object.keys(this.areas);
+    //console.log(this.areaList);
+
+    let resultTools = this.newSer.getTools();
+    let resultStocks = this.newSer.getCstock({
+          order_by:'follow',
+          page:1,
+          order:'desc'
+        });
+
   }
 
 }
