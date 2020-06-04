@@ -53,4 +53,18 @@ export class NewsService {
 
     return result.data;
   }
+
+  //获取字段范围
+  async getFieldRange(field){
+    let httpUrl = this.host + `/api/choose/range?field=${field}`;
+    let result = await axios.get(httpUrl);
+    return result.data;
+  }
+
+  //获取筛选的股票
+  async getSxStock(options){
+    let httpUrl = this.host + `/api/choose/sxStock` ;
+    let result = await axios.get(httpUrl, {params:options});
+    return result.data;
+  }
 }

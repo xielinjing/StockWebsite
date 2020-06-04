@@ -114,6 +114,23 @@ app.get('/api/choose/areas', async(req,res)=>{
     res.json(result.data);
 })
 
+//字段的最大值最小值
+app.get('/api/choose/range', async(req, res)=>{
+    let time = new Date().getTime();
+    let field = req.query.field? req.query.field : "psf.20191231";
+    let httpUrl = `https://xueqiu.com/service/screener/values?category=CN&field=${field}&_=${time}`;
+    let result = await axios.get(httpUrl);
+    res.json(result.data);
+})
+
+//开始选股
+app.get('/api/choose/sxStock', async(req,res)=>{
+    let time = new Date().getTime();
+    let httpUrl = `https://xueqiu.com/service/screener/screen`;
+    let result = await axios.get(httpUrl, {params:req.query});
+    res.json(result.data);
+})
+
 //listen to the port
 app.listen(8080, ()=>{
     console.log('server start:', 'http://localhost:8080')
